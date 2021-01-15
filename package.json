@@ -6,7 +6,6 @@
   "scripts": {
     "start": "nodemon index.js",
     "start:monitor": "nodemon index.js",
-    "generate-types": "tsc",
     "commit": "cz",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
@@ -35,8 +34,7 @@
     "husky": "^4.3.7",
     "semantic-release": "^17.3.1",
     "semantic-release-cli": "^5.4.1",
-    "semantic-release-docker": "^2.2.0",
-    "typescript": "^4.1.3"
+    "semantic-release-docker": "^2.2.0"
   },
   "repository": {
     "type": "git",
