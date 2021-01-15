@@ -28,8 +28,9 @@ you need a folder containing a `config.json` file (see `config/config.example.js
 ## Usage
 to run in docker use the following command:
 ```
-docker run -d --restart unless-stopped --name visit-overflow -v ${pwd}/config:/config kibibitopensrc/kb-fanatic-overflow
+docker run -d --restart unless-stopped --name kb-fanatic-overflow -v ${pwd}/config:/config kibibitopensrc/kb-fanatic-overflow
 ```
+`${pwd}` is used for using the current folder, but you can replace it with whatever path you want to a folder containing the config
 
 
 ## Contributors ✨
