@@ -82,13 +82,13 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "docker build -t kibibit/kb-fanatic-overflow ."
+          "prepareCmd": "docker build -t kibibitopensrc/kb-fanatic-overflow ."
         }
       ],
       [
         "semantic-release-docker",
         {
-          "name": "kibibit/kb-fanatic-overflow"
+          "name": "kibibitopensrc/kb-fanatic-overflow"
         }
       ]
     ]
