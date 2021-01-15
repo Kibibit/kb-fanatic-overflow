@@ -1,16 +1,52 @@
 {
-  "name": "@kibibit/visit-stack",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@kibibit/kb-fanatic-overflow",
+  "version": "0.0.0-development",
+  "description": "Get the stack overflow fanatic achievement with a Docker Container!",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "start:monitor": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate-types": "tsc",
+    "commit": "cz",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "lint:fix": "eslint **/*.js --fix",
+    "lint": "eslint **/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release:setup": "semantic-release-cli setup",
+    "semantic-release": "semantic-release"
   },
   "author": "thatkookooguy <neilkalman@gmail.com>",
   "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-angular": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/exec": "^5.0.0",
+    "@types/axios": "^0.14.0",
+    "@types/moment": "^2.13.0",
+    "@types/nconf": "^0.10.0",
+    "@types/nodemon": "^1.19.0",
+    "@types/puppeteer": "^5.4.2",
+    "all-contributors-cli": "^6.19.0",
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.17.0",
+    "husky": "^4.3.7",
+    "semantic-release": "^17.3.1",
+    "semantic-release-cli": "^5.4.1",
+    "semantic-release-docker": "^2.2.0",
+    "typescript": "^4.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kibibit/kb-fanatic-overflow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kibibit/kb-fanatic-overflow/issues"
+  },
   "dependencies": {
+    "@kibibit/consologo": "^1.1.1",
     "axios": "^0.21.1",
     "moment": "^2.29.1",
     "nconf": "^0.11.0",
@@ -19,11 +55,41 @@
     "puppeteer": "^5.5.0",
     "pushbullet": "^2.4.0"
   },
-  "devDependencies": {
-    "@types/moment": "^2.13.0",
-    "@types/nconf": "^0.10.0",
-    "@types/nodemon": "^1.19.0",
-    "@types/puppeteer": "^5.4.2",
-    "@types/axios": "^0.14.0"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "branches": [
+      "master",
+      "next"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "docker build -t kibibit/kb-fanatic-overflow ."
+        }
+      ],
+      [
+        "semantic-release-docker",
+        {
+          "name": "kibibit/kb-fanatic-overflow"
+        }
+      ]
+    ]
   }
 }

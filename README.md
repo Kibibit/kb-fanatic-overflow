@@ -1,14 +1,28 @@
 <p align="center">
-  <a href="https://github.com/Kibibit/visit-overflow/" target="blank"><img src="./visit-overlfow.png" width="200" alt="achievibit Logo" />
+  <a href="https://github.com/Kibibit/visit-overflow/" target="blank"><img src="http://kibibit.io/kibibit-assets/kb-overflow.png" width="200" alt="achievibit Logo" />
   </a>
   <h2 align="center">
-    @kibibit/visit-overflow
+    @kibibit/kb-fanatic-overflow
   </h2>
 </p>
 <p align="center">
-  Get the fanatic achievement!
+  Get the stack overflow fanatic achievement with a Docker Container!
 </p>
 <hr>
+
+## Installation
+you need a folder containing a `config.json` file (see `config/config.example.json` for an example). The available options are:
+
+- timezone
+- pushbullet (optional) - token for pushbullet for notifications
+- hassUrl (optional) - a Home Assistant instance you want to send webhooks notifications to
+- scheduledHourOfDay - a comma separated list of hours in a 24hours format to run the task (for example: `16,23` will run once at 4pm, and once at 11pm)
+- stackoverflow.email - user email for stackoverflow login
+- stackoverflow.password - user password for stackoverflow login
+- returnUrl - can be anything you want, but for best results, have it point to your stackoverflow user page. This way, it will actually send the correct data in the notifications.
+
+
+## Usage
 
 to run in docker use the following commands:
 ```
