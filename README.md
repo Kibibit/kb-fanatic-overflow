@@ -1,9 +1,12 @@
 <p align="center">
-  <a href="https://github.com/Kibibit/visit-overflow/" target="blank"><img src="https://kibibit.io/kibibit-assets/kb-overflow.png" width="200" alt="achievibit Logo" />
+  <a href="https://github.com/Kibibit/kb-fanatic-overflow/" target="blank"><img src="https://kibibit.io/kibibit-assets/kb-overflow.png" width="200" alt="achievibit Logo" />
   </a>
   <h2 align="center">
     @kibibit/kb-fanatic-overflow
   </h2>
+</p>
+<p align="center">
+  <a href="https://hub.docker.com/repository/docker/kibibitopensrc/kb-fanatic-overflow"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/kibibitopensrc/kb-fanatic-overflow?logo=docker&style=for-the-badge"></a>
 </p>
 <p align="center">
   Get the stack overflow fanatic achievement with a Docker Container!
@@ -40,7 +43,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://thatkookooguy.kibibit.io/"><img src="https://avatars3.githubusercontent.com/u/10427304?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Neil Kalman</b></sub></a><br /><a href="https://github.com/kibibit/hass-kibibit-theme/commits?author=Thatkookooguy" title="Code">💻</a> <a href="https://github.com/kibibit/hass-kibibit-theme/commits?author=Thatkookooguy" title="Documentation">📖</a> <a href="#design-Thatkookooguy" title="Design">🎨</a> <a href="#infra-Thatkookooguy" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-Thatkookooguy" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="http://thatkookooguy.kibibit.io/"><img src="https://avatars3.githubusercontent.com/u/10427304?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Neil Kalman</b></sub></a><br /><a href="https://github.com/kibibit/hass-kibibit-theme/commits?author=Thatkookooguy" title="Code">💻</a> <a href="https://github.com/kibibit/kb-fanatic-overflow/commits?author=Thatkookooguy" title="Documentation">📖</a> <a href="#design-Thatkookooguy" title="Design">🎨</a> <a href="#infra-Thatkookooguy" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-Thatkookooguy" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
