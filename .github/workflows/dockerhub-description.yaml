@@ -1,5 +1,10 @@
 name: Update Docker Hub Description
-on: release
+on:
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
 jobs:
   dockerHubDescription:
     runs-on: ubuntu-latest
