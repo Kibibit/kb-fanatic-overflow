@@ -26,11 +26,9 @@ you need a folder containing a `config.json` file (see `config/config.example.js
 
 
 ## Usage
-
-to run in docker use the following commands:
+to run in docker use the following command:
 ```
-docker build -t thatkookooguy/visit-overflow . 
-docker run -d --restart unless-stopped --name visit-overflow -v ${pwd}/config:/config thatkookooguy/visit-overflow
+docker run -d --restart unless-stopped --name visit-overflow -v ${pwd}/config:/config kibibitopensrc/kb-fanatic-overflow
 ```
 
 
