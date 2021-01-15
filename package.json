@@ -3,6 +3,9 @@
   "version": "0.0.0-development",
   "description": "Get the stack overflow fanatic achievement with a Docker Container!",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "start": "nodemon index.js",
     "start:monitor": "nodemon index.js",
