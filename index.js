@@ -9,8 +9,8 @@ const axios = require('axios').default;
 let pusher;
 
 nconf.argv()
-   .env({ lowerCase: true })
-   .file({ file: '/config/config.json' });
+  .env({ lowerCase: true })
+  .file({ file: '/config/config.json' });
 
 const userEmail = nconf.get('stackoverflow:email');
 const userPassword = nconf.get('stackoverflow:password');
@@ -22,18 +22,16 @@ const returnUrl = nconf.get('returnUrl') || 'https://stackoverflow.com';
 const returnUrlEncoded = encodeURIComponent(returnUrl);
 const takeScreenshot = nconf.get('screenshot') || false;
 
-let hassWebhookUrl;
-
-if (hassInstanceUrl) {
-  hassWebhookUrl = new URL('/api/webhook/visit-stackoverflow', hassInstanceUrl).href;
-}
+const hassWebhookUrl = hassInstanceUrl ?
+  new URL('/api/webhook/visit-stackoverflow', hassInstanceUrl).href :
+  null;
 
 if (pushbulletApiKey) {
   pusher = new PushBullet(pushbulletApiKey);
 }
 
 (async () => {
-  await visitStackOverflow()
+  await visitStackOverflow();
 })();
 
 cron.schedule(`0 ${ scheduledHourOfDay } * * *`, visitStackOverflow, {
@@ -47,17 +45,18 @@ async function visitStackOverflow() {
   const browser = await puppeteer.launch({
     headless: true,
     args: [
-      "--no-sandbox",
-      "--disable-gpu",
-  ]
+      '--no-sandbox',
+      '--disable-gpu',
+    ]
   });
   const page = await browser.newPage();
   await page.setViewport({
     height: 700,
     width: 1250
   });
-  
-  await page.goto(`https://stackoverflow.com/users/login?ssrc=head&returnurl=${ returnUrlEncoded }`);
+
+  const loginUrl = 'https://stackoverflow.com/users/login?ssrc=head';
+  await page.goto(`${ loginUrl }&returnurl=${ returnUrlEncoded }`);
   await page.type('input#email', userEmail);
   await page.type('input#password', userPassword);
   await page.focus('button#submit-button');
@@ -69,27 +68,54 @@ async function visitStackOverflow() {
   const fileName = `${ now }-screenshot.png`;
   let screenshot;
   if (takeScreenshot) {
-    screenshot = await page.screenshot({ path: fileName, clip: {x: 150, y: 150, width: 1250 - 150, height: 450 - 150} });
+    screenshot = await page.screenshot({
+      path: fileName,
+      clip: {
+        x: 150,
+        y: 150,
+        width: 1250 - 150,
+        height: 450 - 150
+      }
+    });
   } else {
-    screenshot = await page.screenshot({ encoding: 'binary', clip: {x: 150, y: 150, width: 1250 - 150, height: 450 - 150} });
+    screenshot = await page.screenshot({
+      encoding: 'binary',
+      clip: {
+        x: 150,
+        y: 150,
+        width: 1250 - 150,
+        height: 450 - 150
+      }
+    });
   }
 
   const element = await page.$('.days-visited');
-  const daysVisited = element ? (await page.evaluate(element => element.innerText, element)).trim() : 'Daily visit';
-  const daysLeft = 100 - (+daysVisited.replace(/Visited \d+ days, /ig, '').replace('consecutive', '').trim());
- 
-  await browser.close();
-  
-  if (false && pushbulletApiKey && pusher) {
-    pusher.file({}, screenshot, `stackoverflow [${ now }] - ${ daysVisited }`, (err, res) => {
-      if (err) {
-        console.error(err);
-        // fail gracefully
-        return;
-      }
+  const daysVisited = element ?
+    (await page.evaluate(element => element.innerText, element)).trim() :
+    'Daily visit';
+  const dayVisitedNumber = +daysVisited
+    .replace(/Visited \d+ days, /ig, '')
+    .replace('consecutive', '')
+    .trim();
+  const daysLeft = 100 - dayVisitedNumber;
 
-      console.log('sent push notification', res);
-    });
+  await browser.close();
+
+  // eslint-disable-next-line no-constant-condition
+  if (false && pushbulletApiKey && pusher) {
+    pusher.file(
+      {},
+      screenshot,
+      `stackoverflow [${ now }] - ${ daysVisited }`,
+      (err, res) => {
+        if (err) {
+          console.error(err);
+          // fail gracefully
+          return;
+        }
+
+        console.log('sent push notification', res);
+      });
   }
 
   if (hassWebhookUrl) {
@@ -105,13 +131,4 @@ async function visitStackOverflow() {
       }
     );
   }
-}
-
-function toArrayBuffer(buf) {
-  var ab = new ArrayBuffer(buf.length);
-  var view = new Uint8Array(ab);
-  for (var i = 0; i < buf.length; ++i) {
-      view[i] = buf[i];
-  }
-  return ab;
 }
