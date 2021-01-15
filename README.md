@@ -6,7 +6,7 @@
   </h2>
 </p>
 <p align="center">
-  <a href="https://hub.docker.com/repository/docker/kibibitopensrc/kb-fanatic-overflow"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/kibibitopensrc/kb-fanatic-overflow?logo=docker&style=for-the-badge"></a>
+  <a href="https://hub.docker.com/repository/docker/kibibitopensrc/kb-fanatic-overflow"><img alt="Docker Image Version (latest semver)" src="https://img.shields.io/docker/v/kibibitopensrc/kb-fanatic-overflow?logo=docker&sort=semver&style=for-the-badge"></a>
 </p>
 <p align="center">
   Get the stack overflow fanatic achievement with a Docker Container!
