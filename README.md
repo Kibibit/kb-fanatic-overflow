@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Kibibit/visit-overflow/" target="blank"><img src="http://kibibit.io/kibibit-assets/kb-overflow.png" width="200" alt="achievibit Logo" />
+  <a href="https://github.com/Kibibit/visit-overflow/" target="blank"><img src="https://kibibit.io/kibibit-assets/kb-overflow.png" width="200" alt="achievibit Logo" />
   </a>
   <h2 align="center">
     @kibibit/kb-fanatic-overflow
